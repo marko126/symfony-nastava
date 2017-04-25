@@ -15,7 +15,7 @@ class ArticleType extends AbstractType {
         $builder
             ->add('name', TextType::class, ['label' => 'Naziv'])
             ->add('category', TextType::class, ['label' => 'Kategorija'])
-            ->add('price', NumberType::class, ['label' => 'Cena'])
+            ->add('price')
             ->add('Submit', SubmitType::class, ['label' => 'Unesi']);
         
     }

@@ -45,6 +45,7 @@ class Article
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Type(type="float")
      * @ORM\Column(name="price", type="decimal", precision=10, scale=2)
      */
     private $price;
