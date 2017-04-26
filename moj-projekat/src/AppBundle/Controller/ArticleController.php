@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Form\ArticleType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class ArticleController extends Controller {
     
@@ -67,7 +68,14 @@ class ArticleController extends Controller {
         
     }
     
+    /**
+     * @Security("has_role('ROLE_ADMIN')")
+     * @param Request $request
+     * @return type
+     */
     public function createAction(Request $request) {
+        
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Gde si pošo bre?');
         
         $article = new Article();
         
