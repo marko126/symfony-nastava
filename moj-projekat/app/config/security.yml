@@ -4,18 +4,10 @@ security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory:
-                users:
-                    marko:
-                        password: marko
-                        roles: 'ROLE_USER'
-                    admin:
-                        password: admin
-                        roles: 'ROLE_ADMIN'
-                    super:
-                        password: super
-                        roles: 'ROLE_SUPER_ADMIN'
+        my_db_provider:
+            entity:
+                class: AppBundle:User
+                property: username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -25,6 +17,7 @@ security:
 
         main:
             anonymous: ~
+            provider: my_db_provider
             # activate different ways to authenticate
 
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
@@ -44,7 +37,8 @@ security:
         # - { path: ^/articles, roles: ROLE_USER }
     
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        AppBundle\Entity\User:
+            algorithm: bcrypt
         
     role_hierarchy:
         ROLE_ADMIN:         ROLE_USER
