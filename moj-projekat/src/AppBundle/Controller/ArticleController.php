@@ -69,7 +69,7 @@ class ArticleController extends Controller {
     }
     
     /**
-     * @Security("has_role('ROLE_ADMIN')")
+     * /@Security("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @return type
      */
@@ -112,6 +112,8 @@ class ArticleController extends Controller {
     }
     
     public function updateAction(Request $request, $id) {
+        
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'Gde si pošo bre kad nisi super?');
         
         // Pozivamo entity manager
         $em = $this->getDoctrine()->getManager();
