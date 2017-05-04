@@ -4,10 +4,8 @@ security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        my_db_provider:
-            entity:
-                class: AppBundle:User
-                property: username
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -16,8 +14,7 @@ security:
             security: false
 
         main:
-            anonymous: ~
-            provider: my_db_provider
+            anonymous:  true
             # activate different ways to authenticate
 
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
@@ -25,21 +22,18 @@ security:
 
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             form_login:
-                login_path: login
-                check_path: login
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
                 
-            logout:
-                path:   /logout
-                target: /
+            logout:     true
     
     # access_control:
         # - { path: ^/article/create, roles: ROLE_USER }
         # - { path: ^/articles, roles: ROLE_USER }
     
     encoders:
-        AppBundle\Entity\User:
-            algorithm: bcrypt
+        FOS\UserBundle\Model\UserInterface: bcrypt
         
     role_hierarchy:
         ROLE_ADMIN:         ROLE_USER
-        ROLE_SUPER_ADMIN:   [ROLE_ADMIN, ROLE_NESTO]
+        ROLE_SUPER_ADMIN:   ROLE_ADMIN

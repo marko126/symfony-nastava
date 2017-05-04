@@ -27,7 +27,12 @@ class Category
      * @ORM\Column(name="name", type="string", length=100, unique=true)
      */
     private $name;
-
+    
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Article", mappedBy="category")
+     * @var type 
+     */
+    private $articles;
 
     /**
      * Get id

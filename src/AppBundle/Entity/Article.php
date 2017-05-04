@@ -38,7 +38,10 @@ class Article
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(name="category", type="string", length=100)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="articles")
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="category", referencedColumnName="id")
+     * })
      */
     private $category;
 
