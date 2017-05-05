@@ -23,7 +23,11 @@
                     <tr>
                         <td>{{ artikal.id }}</td>
                         <td>{{ artikal.name }}</td>
-                        <td>{{ artikal.category }}</td>
+                        {% if artikal.category != null %}
+                        <td>{{ artikal.category.name }}</td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
                         <td>{{ artikal.price }}</td>
                         <td><a href="{{ path('article_show', { 'id' : artikal.id, 'name' : artikal.name }) }}">Show</a></td>
                         {% if is_granted('ROLE_ADMIN') %}

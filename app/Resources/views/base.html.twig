@@ -8,11 +8,11 @@
         
         {% block stylesheets %}
             <link rel="icon" href="favicon.ico" type="image/x-icon">
-            <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+            {% stylesheets '@AppBundle/Resources/public/css/*' %}
+                <link href="{{ asset_url }}" rel="stylesheet">
+            {% endstylesheets %}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link href="https://fonts.googleapis.com/css?family=Leckerli+One|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
-            <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
-            <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" type="text/css"/>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -47,7 +47,9 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" href="#">
-                            <img src="{{ asset('') }}img/logo.png" alt="WEB SCHOOL" class="img-responsive">
+                            {% image '@AppBundle/Resources/public/img/logo.png' %}
+                            <img src="{{ asset_url }}" alt="WEB SCHOOL" class="img-responsive">
+                            {% endimage %}
                         </a>
                     </div>
 
@@ -80,10 +82,11 @@
                 <a href="#top"><span class="fa fa-chevron-circle-up"></span></a>
             </div>
             {% block javascripts %}
+                {% javascripts '@AppBundle/Resources/public/js/*' %}
+                    <script src="{{ asset_url }}"></script>
+                {% endjavascripts %}
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
                 <!-- Include all compiled plugins (below), or include individual files as needed -->
-                <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-                <script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
             {% endblock %}
         </footer>
     </body>

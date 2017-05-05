@@ -48,6 +48,9 @@ class ArticleController extends Controller {
     public function showAction($id, $name) {
         
         //$artikal = $this->findArticleByTitle($name);
+        $message = $this->container->get('app.message_generator');
+        
+        var_dump($message->getHappyMessage());exit();
         
         $em = $this->getDoctrine()->getManager();
         
