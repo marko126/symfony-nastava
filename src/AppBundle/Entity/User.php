@@ -20,6 +20,12 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Article", mappedBy="createdByUser")
+     * @var type 
+     */
+    private $articles;
 
     public function __construct() {
         parent::__construct();

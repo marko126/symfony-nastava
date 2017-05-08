@@ -78,7 +78,7 @@ class ArticleController extends Controller {
      */
     public function createAction(Request $request) {
         
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Gde si pošo bre?');
+        //$this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Gde si pošo bre?');
         
         $article = new Article();
         

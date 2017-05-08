@@ -60,15 +60,6 @@ class Article
     private $description;
     
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="articles")
-     * @ORM\JoinColumns({
-     *      @ORM\JoinColumn(name="fos_user", referencedColumnName="id")
-     * })
-     * @var type 
-     */
-    private $createdByUser;
-    
-    /**
      * Get id
      *
      * @return int
@@ -149,28 +140,5 @@ class Article
     {
         return $this->price;
     }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Article
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
 }
+
